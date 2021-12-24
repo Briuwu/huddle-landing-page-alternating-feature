@@ -1,0 +1,350 @@
+// FONTS
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+$ff-headings: 'Poppins', sans-serif;
+$ff-body: 'Open Sans', sans-serif;
+
+
+// COLORS
+$pink: hsl(322, 100%, 66%);
+$very-pale-cyan: hsl(193, 100%, 96%);
+$very-dark-cyan: hsl(192, 100%, 9%);
+$grayish-blue: hsl(208, 11%, 55%);
+
+$hover: 250ms ease;
+
+
+// MIXINS 
+$br: 700px;
+
+@mixin mq($size){
+  @media only screen and (min-width: $size){
+    @content;
+  }
+}
+
+// RESETS
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.50%;
+  font-family: $ff-body;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  transition: transform $hover;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+a {
+  color: $very-dark-cyan;
+  text-decoration: none;
+  display: inline-block;
+}
+
+body {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: url(../images/bg-hero-mobile.svg) no-repeat;
+  background-size: contain;
+  color: $very-dark-cyan;
+  line-height: 1.5;
+
+  @include mq($br){
+    background: url(../images/bg-hero-desktop.svg) no-repeat;
+    background-size: contain;
+  }
+}
+
+
+// CSS
+main {
+  max-width: 1440px;
+  display: grid;
+}
+
+.btn {
+  font-size: 1.3rem;
+  background-color: $pink;
+  padding: 0.8em 4em;
+  border-radius: 2em;
+  color: $very-pale-cyan;
+  font-weight: 700;
+  transition: transform $hover;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2em 2em 10em 2em;
+
+  @include mq($br){
+    margin: 4em 4em 10em 4em;
+  }
+
+  &__logo {
+    width: 10em;
+    cursor: pointer;
+    transition: transform $hover;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    @include mq($br){
+      width: 20em;
+    }
+  }
+
+  &__try {
+    font-size: clamp(1.3rem, 2vw, 2rem);
+    font-weight: 700;
+
+    &:hover {
+      color: $pink;
+    }
+  }
+}
+
+.hero {
+  font-size: clamp(1.7rem, 2vw, 1.8rem);
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3em;
+  margin-bottom: 15em;
+  padding: 0 2em;
+
+  @include mq($br){
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &__info {
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5em;
+
+    @include mq($br){
+      max-width: 80%;
+      align-items: flex-start;
+      text-align: left;
+      align-self: center;
+      gap: 1em;
+    }
+    
+
+    &--title {
+      font-size: clamp(2.7rem, 2vw, 3.4rem);
+    }
+  }
+}
+
+.info {
+  padding: 0 2em;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10em;
+  text-align: center;
+  margin-bottom: 10em;
+
+  @include mq($br){
+    &__all {
+      @include mq($br){
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        place-items: center;
+  
+        & img {
+          grid-row: 1;
+          grid-column: 2;
+        }
+      }
+    }
+    &__flow {
+      & img {
+        grid-row: 1;
+        grid-column: 1;
+      }
+
+      & div {
+        grid-row: 1;
+        grid-column: 2;
+      }
+    }
+    &--details {
+      grid-row: 1;
+      grid-column: 1;
+      max-width: 80%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      gap: 1em;
+    }
+  }
+
+  &--title {
+    font-size: clamp(2rem, 2vw, 3rem);
+    margin: 1em 0;
+
+    @include mq($br){
+      margin: 0;
+    }
+  }
+
+  &--detail {
+    font-size: clamp(1.7rem, 2vw, 2rem);
+    color: $grayish-blue;
+  }
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1em 1fr;
+  place-items: center;
+  margin-top: 15em;
+
+  &__ready {
+    background-color: $very-pale-cyan;
+    color: $very-dark-cyan;
+    text-align: center;
+    font-size: clamp(1.3rem, 1.5vw, 2rem);
+    margin: 1em;
+
+    z-index: 1;
+    padding: 2em 3.5em;
+    border-radius: 1em;
+
+    &--title {
+      margin-bottom: 1.5em;
+    }
+
+    & a {
+      font-size: clamp(1rem, 1.5vw, 2rem);
+    }
+  }
+
+  &__contact {
+    font-size: 1.5rem;
+    background-color: $very-dark-cyan;
+    color: $very-pale-cyan;
+    display: grid;
+
+    z-index: 0;
+    padding: 10em 1em 1em;
+
+    @include mq($br){
+      grid-template-columns: repeat(4, 1fr);
+      place-items: center;
+      padding-left: 5em;
+      padding-right: 5em;
+
+      &--copyright {
+        grid-column: span 4;
+        place-self: center;
+      }
+
+      &--links {
+        margin-top: 5.5em;
+        place-self: start;
+      }
+    }
+
+    &--img {
+      width: 13em;
+      margin-bottom: 2em;
+    }
+
+    &--huddle {
+      margin-bottom: 1.5em;
+
+      &-all {
+        display: flex;
+        align-items: center;
+        gap: 2em;
+        margin-bottom: 2em;
+      }
+    }
+
+    &--p2 {
+      color: $very-pale-cyan;
+      margin-bottom: 1em;
+      cursor: pointer;
+      transition: transform $hover;
+
+      &:hover {
+        transform: scale(1.03);
+        color: $pink;
+      }
+    }
+
+    &--about {
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    &--career {
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      margin-bottom: 1.5em;
+    }
+
+    &--links {
+      display: flex;
+      justify-content: center;
+      gap: 1em;
+      margin-bottom: 1em;
+
+      & img {
+        cursor: pointer;
+        width: 2em;
+        height: 2em;
+        padding: 0.4em;
+        outline: 1px solid white;
+        border-radius: 50%;
+      }
+    }
+
+    &--copyright {
+      font-size: clamp(1rem, 1vw, 2rem);
+      text-align: center;
+      display: grid;
+      gap: 0.5em;
+    }
+  }
+}
+
+.attribution { 
+  font-size: 11px;
+}
+.attribution a { 
+  text-decoration: underline;
+  color: hsl(0, 0%, 100%);
+  &:hover {
+    color: $pink;
+  }
+}
